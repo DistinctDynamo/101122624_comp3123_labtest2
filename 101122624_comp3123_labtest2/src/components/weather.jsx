@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export default function Weather(){
     const [weather, setWeather] = useState({});
+    const [location, setLocation] = useState("");
    
 
     const fetchWeather = () =>{
@@ -20,6 +21,18 @@ export default function Weather(){
     return (
         <div>
             <h3>Weather Forecast</h3>
+            <form>
+                <label htmlFor='search'>Search</label>
+                <input
+                id="search"
+                name='search'
+                type='text'
+                placeholder='Enter a city'
+                />
+                <button type='submit' className='submit button'>
+                    Submit
+                </button>
+            </form>
             <table border="1" cellPadding="5">
                 <thead>
                     <tr>
@@ -36,13 +49,13 @@ export default function Weather(){
                 </thead>
                 <tbody>
                         <tr key={weather.id}>
-                            <td>
+                             <td>
                                 <img src={`https://openweathermap.org/img/wn/${weather.weather.map(missing=>(
                                 missing.icon
                             ))}@2x.png`}/>
                             </td>
-                            <td>{weather.name}</td>
                             <td>{weather.sys.country}</td>
+                            <td>{weather.name}</td>
                             <td>{weather.main.humidity}</td>
                             <td>{weather.main.temp}</td>
                             <td>{weather.main.feels_like}</td> 
@@ -57,3 +70,11 @@ export default function Weather(){
         </div>
     )
 }
+//
+  //                          
+    //                        
+      //                      
+        //                    
+          //                 
+            //                
+               //
