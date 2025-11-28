@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export default function Weather(){
     const [weather, setWeather] = useState({});
+   
 
     const fetchWeather = () =>{
         axios.get('http://api.openweathermap.org/data/2.5/weather?q=Toronto&appid=a46b4f22404c227652cdfb8b064d3f96')
@@ -30,12 +31,15 @@ export default function Weather(){
                         <th>Feels Like</th>
                         <th>Visibility</th>
                         <th>Wind</th>
+                        <th>Description</th>
                     </tr>
                 </thead>
                 <tbody>
                         <tr key={weather.id}>
                             <td>
-                                <img src={"https://openweathermap.org/img/wn/10d@2x.png"}/>
+                                <img src={`https://openweathermap.org/img/wn/${weather.weather.map(missing=>(
+                                missing.icon
+                            ))}@2x.png`}/>
                             </td>
                             <td>{weather.name}</td>
                             <td>{weather.sys.country}</td>
@@ -44,6 +48,9 @@ export default function Weather(){
                             <td>{weather.main.feels_like}</td> 
                             <td>{weather.visibility}</td>
                             <td>{weather.wind.speed}</td>
+                            <td>{weather.weather.map(missing=>(
+                                missing.description
+                            ))}</td>
                         </tr>
                 </tbody>
             </table>
